@@ -10,7 +10,7 @@ const msgSchema = mongoose.Schema({
     users: Array,
     
     sender: {
-        type: "",//Nose que va aca :C
+        type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true,
     },
@@ -19,3 +19,5 @@ const msgSchema = mongoose.Schema({
         times:true,
     }
 );
+
+module.exports = mongoose.model("Messages", MessageSchema);

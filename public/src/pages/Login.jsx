@@ -67,24 +67,24 @@ export default function Login() {
         <form action="" onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
             <img src={Logo} alt="logo" />
-            <h1>snappy</h1>
+            <h1>Prosoft</h1>
           </div>
           <input
             type="text"
-            placeholder="Username"
+            placeholder="Usuario"
             name="username"
             onChange={(e) => handleChange(e)}
             min="3"
           />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Contraseña"
             name="password"
             onChange={(e) => handleChange(e)}
           />
-          <button type="submit">Log In</button>
+          <button type="submit">Iniciar Sesion</button>
           <span>
-            Don't have an account ? <Link to="/register">Create One.</Link>
+            <Link to="/register">Registrarse.</Link>
           </span>
         </form>
       </FormContainer>

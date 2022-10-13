@@ -20,4 +20,4 @@ const msgSchema = mongoose.Schema({
     }
 );
 
-module.exports = mongoose.model("Messages", MessageSchema);
+module.exports = mongoose.model("Messages", msgSchema);

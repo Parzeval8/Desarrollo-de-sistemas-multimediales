@@ -1,7 +1,7 @@
 const {
     login,
-    // register,
-    // getAllUsers,
+    register,
+    getAllUsers,
     // setAvatar,
     // logOut,
   } = require("../controllers/userController");
@@ -9,8 +9,8 @@ const {
   const router = require("express").Router();
   
   router.post("/login", login);
-//   router.post("/register", register);
-//   router.get("/allusers/:id", getAllUsers);
+  router.post("/register", register);
+  router.get("/allusers/:id", getAllUsers);
 //   router.post("/setavatar/:id", setAvatar);
 //   router.get("/logout/:id", logOut);
   

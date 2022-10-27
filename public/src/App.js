@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SetAvatar from "./components/SetAvatar";
+import Register from "./pages/Register";
 import Chat from "./pages/Chat";
 import Login from "./pages/Login";
 export default function App() {
@@ -7,6 +9,8 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/setAvatar" element={<SetAvatar />} />
         <Route path="/" element={<Chat />} />
       </Routes>
     </BrowserRouter>

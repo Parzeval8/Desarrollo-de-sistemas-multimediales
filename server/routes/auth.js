@@ -1,8 +1,8 @@
 const {
     login,
-    // register,
+    register,
     // getAllUsers,
-    // setAvatar,
+    setAvatar,
     // logOut,
   } = require("../controllers/userController");
   

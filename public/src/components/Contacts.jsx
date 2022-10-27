@@ -6,10 +6,9 @@ export default function Contacts({ contacts, changeChat }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
+  console.log(currentUserName, currentUserImage);
   useEffect(async () => {
-    const data = await JSON.parse(
-      localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
-    );
+    const data = await JSON.parse(localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY));
     setCurrentUserName(data.username);
     setCurrentUserImage(data.avatarImage);
   }, []);
@@ -19,7 +18,7 @@ export default function Contacts({ contacts, changeChat }) {
   };
   return (
     <>
-      {currentUserImage && currentUserImage && (
+      {currentUserName && currentUserImage && (
         <Container>
           <div className="brand">
             <img src={Logo} alt="logo" />
@@ -30,16 +29,11 @@ export default function Contacts({ contacts, changeChat }) {
               return (
                 <div
                   key={contact._id}
-                  className={`contact ${
-                    index === currentSelected ? "selected" : ""
-                  }`}
+                  className={`contact ${index === currentSelected ? "selected" : ""}`}
                   onClick={() => changeCurrentChat(index, contact)}
                 >
                   <div className="avatar">
-                    <img
-                      src={`data:image/svg+xml;base64,${contact.avatarImage}`}
-                      alt=""
-                    />
+                    <img src={`data:image/svg+xml;base64,${contact.avatarImage}`} alt="" />
                   </div>
                   <div className="username">
                     <h3>{contact.username}</h3>
@@ -50,10 +44,7 @@ export default function Contacts({ contacts, changeChat }) {
           </div>
           <div className="current-user">
             <div className="avatar">
-              <img
-                src={`data:image/svg+xml;base64,${currentUserImage}`}
-                alt="avatar"
-              />
+              <img src={`data:image/svg+xml;base64,${currentUserImage}`} alt="avatar" />
             </div>
             <div className="username">
               <h2>{currentUserName}</h2>

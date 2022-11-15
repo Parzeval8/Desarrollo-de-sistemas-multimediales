@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BsEmojiSmileFill } from "react-icons/bs";
 import { IoMdSend } from "react-icons/io";
+import { IoIosAttach } from "react-icons/io";
 import styled from "styled-components";
 import Picker from "emoji-picker-react";
 
@@ -40,6 +41,9 @@ export default function ChatInput({ handleSendMsg }) {
           onChange={(e) => setMsg(e.target.value)}
           value={msg}
         />
+        <button type="submit" className="buttonfile">
+          <IoIosAttach />
+        </button>
         <button type="submit">
           <IoMdSend />
         </button>
@@ -139,6 +143,27 @@ const Container = styled.div`
         font-size: 2rem;
         color: white;
       }
+      
+    }
+    buttonfile {
+      padding: 0.3rem 2rem;
+      border-radius: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #0000;
+      border: none;
+      @media screen and (min-width: 720px) and (max-width: 1080px) {
+        padding: 0.3rem 1rem;
+        svg {
+          font-size: 1rem;
+        }
+      }
+      svg {
+        font-size: 2rem;
+        color: black;
+      }
+      
     }
   }
 `;

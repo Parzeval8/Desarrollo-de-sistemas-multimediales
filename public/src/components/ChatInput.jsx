@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BsEmojiSmileFill } from "react-icons/bs";
 import { IoMdSend } from "react-icons/io";
 import { IoIosAttach } from "react-icons/io";
@@ -12,7 +12,6 @@ export default function ChatInput({ handleSendMsg }) {
     setShowEmojiPicker(!showEmojiPicker);
   };
   const handleEmojiPickerhide = () => {
-    console.log(showEmojiPicker)
     showEmojiPicker ? setShowEmojiPicker(!showEmojiPicker) : setShowEmojiPicker(showEmojiPicker);
     
   };
@@ -31,16 +30,25 @@ export default function ChatInput({ handleSendMsg }) {
     }
   };
 
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true)
+  }, [])
+  const refOne = useRef(null)
+  const handleClickOutside = (e) => {
+    if(!refOne.current.contains(e.target)) {
+      handleEmojiPickerhide()
+    }
+  }
+
   return (
     <Container>
       <div className="button-container">
-        <div className="emoji">
+        <div className="emoji" ref={refOne}>
           <BsEmojiSmileFill onClick={handleEmojiPickerhideShow} />
           {showEmojiPicker && <Picker onEmojiClick={handleEmojiClick} />}
         </div>
       </div>
-      <form className="input-container" onSubmit={(event) => sendChat(event)} 
-          onClick={handleEmojiPickerhide}>
+      <form className="input-container" onSubmit={(event) => sendChat(event)}>
         <input
           type="text"
           placeholder="type your message here"

@@ -44,6 +44,15 @@ module.exports.getAllUsers = async (req, res, next) => {
   }
 };
 
+module.exports.filterUsers = async (req, res, next) => {
+  try {
+    const users = await User.find({$or:[{'username':{$regex:dato, $options:"ix"}}]}).select(["email", "username", "avatarImage", "_id"]);
+    return res.json(users);
+  } catch (ex) {
+    next(ex);
+  }
+}
+
 module.exports.setAvatar = async (req, res, next) => {
   try {
     console.log(req.body);

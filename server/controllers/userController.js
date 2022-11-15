@@ -46,7 +46,8 @@ module.exports.getAllUsers = async (req, res, next) => {
 
 module.exports.filterUsers = async (req, res, next) => {
   try {
-    const users = await User.find({$or:[{'username':{$regex:dato, $options:"ix"}}]}).select(["email", "username", "avatarImage", "_id"]);
+    const {username} = req.params
+    const users = await User.find({$or:[{'username':{$regex:username, $options:"ix"}}]}).select(["email", "username", "avatarImage", "_id"]);
     return res.json(users);
   } catch (ex) {
     next(ex);

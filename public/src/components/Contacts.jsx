@@ -16,6 +16,9 @@ export default function Contacts({ contacts, changeChat }) {
     setCurrentSelected(index);
     changeChat(contact);
   };
+  let user 
+  const setFilter = () => {
+  };
   return (
     <>
       {currentUserName && currentUserImage && (
@@ -25,6 +28,12 @@ export default function Contacts({ contacts, changeChat }) {
             <h3>KATRINACHAT</h3>
           </div>
           <div className="contacts">
+            <input
+            type="text"
+            placeholder="Search contact"
+            onChange={(e) => setFilter(e.target.value)}
+            value={user}
+            />
             {contacts.map((contact, index) => {
               return (
                 <div
@@ -85,6 +94,22 @@ const Container = styled.div`
         background-color: #ffffff39;
         width: 0.1rem;
         border-radius: 1rem;
+      }
+    }
+    input {
+      width: 90%;
+      height: 5%;
+      background-color: transparent;
+      color: white;
+      border: none;
+      padding-left: 1rem;
+      font-size: 1.2rem;
+
+      &::selection {
+        background-color: #9a86f3;
+      }
+      &:focus {
+        outline: none;
       }
     }
     .contact {

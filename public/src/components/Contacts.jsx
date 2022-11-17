@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import styled from "styled-components";
 import Logo from "../assets/logo.svg";
-
+import { filterUsersRoute, host } from "../utils/APIRoutes";
 export default function Contacts({ contacts, changeChat }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
-  const [currentSelected, setCurrentSelected] = useState(undefined);
+  const [currentSelected, setCurrentSelected] = useState(undefined);    
+  const [user, setUser] = useState("");
   console.log(currentUserName, currentUserImage);
   useEffect(async () => {
     const data = await JSON.parse(localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY));
@@ -16,8 +18,11 @@ export default function Contacts({ contacts, changeChat }) {
     setCurrentSelected(index);
     changeChat(contact);
   };
-  let user 
-  const setFilter = () => {
+  const setFilter = async(event) => {
+    event.preventDefault()
+    const data = await axios.get(`${filterUsersRoute}/${user}`);
+    contacts = data.data;
+    console.log(contacts)
   };
   return (
     <>
@@ -28,12 +33,14 @@ export default function Contacts({ contacts, changeChat }) {
             <h3>KATRINACHAT</h3>
           </div>
           <div className="contacts">
-            <input
-            type="text"
-            placeholder="Search contact"
-            onChange={(e) => setFilter(e.target.value)}
-            value={user}
-            />
+            <form onSubmit={(event) => setFilter(event)}>
+              <input
+              type="text"
+              placeholder="Search contact"
+              onChange={(e) => setUser(e.target.value)}            
+              value={user}
+              />
+            </form>
             {contacts.map((contact, index) => {
               return (
                 <div
@@ -98,7 +105,7 @@ const Container = styled.div`
     }
     input {
       width: 90%;
-      height: 5%;
+      height: 100%;
       background-color: transparent;
       color: white;
       border: none;
